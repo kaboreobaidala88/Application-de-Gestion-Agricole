@@ -1,0 +1,1077 @@
+Index: src/Recolte.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Recolte.java b/src/Recolte.java
+new file mode 100644
+--- /dev/null	(date 1729009682180)
++++ b/src/Recolte.java	(date 1729009682180)
+@@ -0,0 +1,33 @@
++public class Recolte {
++    private String dateRecolte;
++    private double quantite;
++    private double prixVente;
++
++    public Recolte(String dateRecolte, double quantite, double prixVente) {
++        this.dateRecolte = dateRecolte;
++        this.quantite = quantite;
++        this.prixVente = prixVente;
++    }
++    public String getDateRecolte() {
++        return dateRecolte;
++    }
++    public double getQuantite() {
++        return quantite;
++    }
++    public double getPrixVente() {
++        return prixVente;
++    }
++    public void setDateRecolte() {
++        this.dateRecolte = dateRecolte;
++    }
++    public void setquantite(double quantite) {
++        this.quantite = quantite;
++    }
++    public void setprixVente(double prixVente) {
++            this.prixVente = prixVente;
++        }
++    @Override
++    public String toString() {
++            return String.format("Recolte{dateRecolte='%s', quantite=%.2f, prixVente}", dateRecolte, quantite, prixVente);
++        }
++}
+\ No newline at end of file
+Index: src/GestionAgricoleApp.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GestionAgricoleApp.java b/src/GestionAgricoleApp.java
+new file mode 100644
+--- /dev/null	(date 1729011942033)
++++ b/src/GestionAgricoleApp.java	(date 1729011942033)
+@@ -0,0 +1,82 @@
++import javax.swing.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++
++public class GestionAgricoleApp extends JFrame {
++    private JButton gestionTravauxButton;
++    private JButton gestionCultureButton;
++    private JButton gestionIntrantButton;
++    private JButton gestionFinanceButton;
++    private JButton gestionRecolteButton;
++
++    public GestionAgricoleApp() {
++        // Configuration de la fenêtre principale
++        setTitle("Application de Gestion Agricole");
++        setSize(400, 300);
++        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
++        setLayout(null);
++
++        // Bouton pour la gestion des travaux
++        gestionTravauxButton = new JButton("Gestion des Travaux");
++        gestionTravauxButton.setBounds(50, 30, 300, 30);
++        gestionTravauxButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                new GestionTravauxInterface(); // Ouvrir la fenêtre de gestion des travaux
++            }
++        });
++        add(gestionTravauxButton);
++
++        // Bouton pour la gestion des cultures
++        gestionCultureButton = new JButton("Gestion des Cultures");
++        gestionCultureButton.setBounds(50, 70, 300, 30);
++        gestionCultureButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                new GestionCultureInterface(); // Ouvrir la fenêtre de gestion des cultures
++            }
++        });
++        add(gestionCultureButton);
++
++        // Bouton pour la gestion des intrants
++        gestionIntrantButton = new JButton("Gestion des Intrants");
++        gestionIntrantButton.setBounds(50, 110, 300, 30);
++        gestionIntrantButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                new GestionIntrantInterface(); // Ouvrir la fenêtre de gestion des intrants
++            }
++        });
++        add(gestionIntrantButton);
++
++        // Bouton pour la gestion des finances
++        gestionFinanceButton = new JButton("Gestion des Finances");
++        gestionFinanceButton.setBounds(50, 150, 300, 30);
++        gestionFinanceButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                new GestionFinancesInterface(); // Ouvrir la fenêtre de gestion des finances
++            }
++        });
++        add(gestionFinanceButton);
++
++        // Bouton pour la gestion des récoltes
++        gestionRecolteButton = new JButton("Gestion des Récoltes");
++        gestionRecolteButton.setBounds(50, 190, 300, 30);
++        gestionRecolteButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                new GestionRecolteInterface(); // Ouvrir la fenêtre de gestion des récoltes
++            }
++        });
++        add(gestionRecolteButton);
++
++        // Afficher la fenêtre
++        setVisible(true);
++    }
++
++    public static void main(String[] args) {
++        // Démarrer l'application
++        new GestionAgricoleApp();
++    }
++}
+Index: src/GestionTravauxInterface.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GestionTravauxInterface.java b/src/GestionTravauxInterface.java
+new file mode 100644
+--- /dev/null	(date 1729010901663)
++++ b/src/GestionTravauxInterface.java	(date 1729010901663)
+@@ -0,0 +1,79 @@
++import javax.swing.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++
++public class GestionTravauxInterface {
++    private JFrame frame;
++    private JTextField dateField, typeTravailField, superficieField;
++    private JButton ajouterButton, afficherButton;
++    private GestionTravaux gestionTravaux;
++
++    public GestionTravauxInterface() {
++        gestionTravaux = new GestionTravaux();
++
++        // Créer la fenêtre principale
++        frame = new JFrame("Gestion des Travaux Agricoles");
++        frame.setSize(400, 300);
++        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
++        frame.setLayout(null);
++
++        // Champ de texte pour entrer la date
++        dateField = new JTextField();
++        dateField.setBounds(50, 30, 200, 30);
++        frame.add(dateField);
++
++        // Champ de texte pour entrer le type de travail
++        typeTravailField = new JTextField();
++        typeTravailField.setBounds(50, 70, 200, 30);
++        frame.add(typeTravailField);
++
++        // Champ de texte pour entrer la superficie
++        superficieField = new JTextField();
++        superficieField.setBounds(50, 110, 200, 30);
++        frame.add(superficieField);
++
++        // Bouton pour ajouter un travail
++        ajouterButton = new JButton("Ajouter Travail");
++        ajouterButton.setBounds(50, 150, 150, 30);
++        frame.add(ajouterButton);
++
++        // Bouton pour afficher les travaux
++        afficherButton = new JButton("Afficher Travaux");
++        afficherButton.setBounds(220, 150, 150, 30);
++        frame.add(afficherButton);
++
++        // Ajouter un action listener pour le bouton "Ajouter Travail"
++        ajouterButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                String date = dateField.getText();
++                String typeTravail = typeTravailField.getText();
++                double superficie;
++
++                try {
++                    superficie = Double.parseDouble(superficieField.getText());
++                    // Ajouter le travail à la liste des travaux
++                    gestionTravaux.ajouterTravail(new TravailAgricole(date, typeTravail, superficie));
++                    JOptionPane.showMessageDialog(frame, "Travail ajouté : " + typeTravail);
++                    dateField.setText("");
++                    typeTravailField.setText("");
++                    superficieField.setText("");
++                } catch (NumberFormatException ex) {
++                    JOptionPane.showMessageDialog(frame, "Veuillez entrer une superficie valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
++                }
++            }
++        });
++
++        // Ajouter un action listener pour le bouton "Afficher Travaux"
++        afficherButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                gestionTravaux.afficherTravaux(); // Affiche les travaux dans la console
++            }
++        });
++
++        // Affiche la fenêtre
++        frame.setVisible(true);
++    }
++}
++
+Index: src/Finances.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Finances.java b/src/Finances.java
+new file mode 100644
+--- /dev/null	(date 1728994215828)
++++ b/src/Finances.java	(date 1728994215828)
+@@ -0,0 +1,29 @@
++public class Finances {
++    private String date;
++    private String categorie;
++    private double montant;
++
++    public Finances(String date, String categorie, double montant)
++    {
++        this.date=date;
++        this.categorie=categorie=categorie;
++        this.montant = montant;
++    }
++    public String getCategorie() {
++        return categorie;
++    }
++    public double getMontant() {
++        return montant;
++    }
++    public void setDate(String categorie) {
++        this.categorie = categorie;
++    }
++    public void setMmntant(double montant) {
++        this.montant = montant;
++    }
++    @Override
++    public String toString() {
++        return String.format("Finance{categorie='%s', montant=%.2f}", categorie, montant);
++    }
++    }
++
+Index: src/GestionTravaux.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GestionTravaux.java b/src/GestionTravaux.java
+new file mode 100644
+--- /dev/null	(date 1728987103097)
++++ b/src/GestionTravaux.java	(date 1728987103097)
+@@ -0,0 +1,19 @@
++import java.util.ArrayList;
++import java.util.List;
++public class GestionTravaux {
++    private List<TravailAgricole>
++    travaux = new ArrayList<>();
++
++    public void ajouterTravail(TravailAgricole travail) {
++        travaux.add(travail);
++    }
++    public void afficherTravaux() {
++        for (TravailAgricole travail : travaux) {
++            System.out.println(travail);
++        }
++    }
++    public List<TravailAgricole> obtenirTravauxParCulture(Culture culture) {
++        return travaux;
++    }
++}
++
+Index: src/GestionIntrant.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GestionIntrant.java b/src/GestionIntrant.java
+new file mode 100644
+--- /dev/null	(date 1729020704359)
++++ b/src/GestionIntrant.java	(date 1729020704359)
+@@ -0,0 +1,31 @@
++import java.util.ArrayList;
++import java.util.List;
++
++public class GestionIntrant {
++ private List<Intrant> intrants = new ArrayList<>();
++
++ public void ajouterIntrant(Intrant intrant) {
++  intrants.add(intrant);
++ }
++
++ public void utiliserIntrant(String nom, double quantite) {
++  for (Intrant intrant : intrants) {
++   if (intrant.getNom().equalsIgnoreCase(nom)) {
++    if (intrant.getQuantiteDisponible() >= quantite) {
++     // Si la quantité disponible est suffisante, on soustrait la quantité utilisée
++     intrant.setQuantiteDisponible(intrant.getQuantiteDisponible() - quantite);
++    } else {
++     // Si la quantité disponible est insuffisante, on affiche un message
++     System.out.println("Stock insuffisant pour " + nom);
++    }
++   }
++  }
++ }
++
++ public void afficherIntrants() {
++  // Affiche les détails de chaque intrant dans la liste
++  for (Intrant intrant : intrants) {
++   System.out.println(intrant);
++  }
++ }
++}
+Index: src/GestionFinances.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GestionFinances.java b/src/GestionFinances.java
+new file mode 100644
+--- /dev/null	(date 1728994215881)
++++ b/src/GestionFinances.java	(date 1728994215881)
+@@ -0,0 +1,29 @@
++import java.util.ArrayList;
++import java.util.List;
++public class GestionFinances {
++    private List<Finances> finance = new ArrayList<>();
++
++    public void ajouterTransaction(Finances transaction) {
++        finance.add(transaction);
++    }
++
++    public void afficherFinance() {
++        for (Finances finance : finance) {
++            System.out.println(finance);
++        }
++    }
++
++    public double calculerSolde() {
++        double solde = 0;
++        for (Finances finance : finance) {
++            if
++            (finance.getCategorie().equalsIgnoreCase("revenu")) {
++                solde += finance.getMontant();
++            }
++        }
++
++        return solde;
++    }
++}
++
++
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1728148875013)
++++ b/.idea/.gitignore	(date 1728148875013)
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+Index: src/Culture.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Culture.java b/src/Culture.java
+new file mode 100644
+--- /dev/null	(date 1728976819012)
++++ b/src/Culture.java	(date 1728976819012)
+@@ -0,0 +1,56 @@
++public class Culture {
++    private String nom;
++    private String variete;
++    private String dateDuSemis;
++    private String dateDesRecolte;
++    private String statut;
++    // Constructeur permet d'initialise les attributs avec les valeurs fourni
++public Culture(String nom, String variete, String dateDeSemis, String dateDesRecolte, String statut) {
++    this.nom= nom;
++    this.variete= variete;
++    this.dateDuSemis=dateDeSemis;
++    this.dateDesRecolte=dateDesRecolte;
++    this.statut=statut;
++}
++// Cette partie permet de recupére les valeurs des attribut
++public String getNom()
++{
++    return nom;
++}
++public String getVariete() {
++    return variete;
++}
++public String getdarteDuSemis() {
++    return dateDuSemis;
++}
++public String getdarteDesRecolte(){
++    return dateDesRecolte;
++}
++public String getStatut(){
++    return statut;
++}
++//cette partie permet de modifier les valeurs des attribut
++public void setNom(String nom) {
++    this.nom=nom;
++}
++public void setVariete(String variete) {
++    this.variete = variete;
++}
++public void setDateDuSemis(String dateDuSemis)
++{
++    this.dateDuSemis=dateDuSemis;
++
++}
++public void setDateDesRecolte(String dateDesRecolte) {
++    this.dateDesRecolte=dateDesRecolte;
++}
++public void setStatut(String statut) {
++    this.statut= statut;
++}
++// ils re,voie une representation sous forme de chaine de caracteres la class Culture , il est egalement utile pour l'affichage
++@Override
++public String toString() {
++    return "Culture{" + "nom'" + nom + '\'' + ",variete'" + variete + '\'' + ", dateSemis=dateSemis + '\'" + dateDesRecolte + '\'' + ", statut'" + statut + '\'' + '}';
++
++}
++}
+\ No newline at end of file
+Index: Application de Gestion Agricole.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Application de Gestion Agricole.iml b/Application de Gestion Agricole.iml
+new file mode 100644
+--- /dev/null	(date 1728148837051)
++++ b/Application de Gestion Agricole.iml	(date 1728148837051)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+--- /dev/null	(date 1728148659438)
++++ b/.gitignore	(date 1728148659438)
+@@ -0,0 +1,29 @@
++### IntelliJ IDEA ###
++out/
++!**/src/main/**/out/
++!**/src/test/**/out/
++
++### Eclipse ###
++.apt_generated
++.classpath
++.factorypath
++.project
++.settings
++.springBeans
++.sts4-cache
++bin/
++!**/src/main/**/bin/
++!**/src/test/**/bin/
++
++### NetBeans ###
++/nbproject/private/
++/nbbuild/
++/dist/
++/nbdist/
++/.nb-gradle/
++
++### VS Code ###
++.vscode/
++
++### Mac OS ###
++.DS_Store
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1728148863451)
++++ b/.idea/misc.xml	(date 1728148863451)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+new file mode 100644
+--- /dev/null	(date 1729018671358)
++++ b/src/Main.java	(date 1729018671358)
+@@ -0,0 +1,19 @@
++import javax.swing.*;
++
++public class Main {
++    public static void main(String[] args) {
++        // Configurer l'interface utilisateur pour l'apparence et la sensation
++        try {
++            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
++
++        // Lancer l'application principale de gestion agricole
++        SwingUtilities.invokeLater(() -> {
++            // Créez une instance de la classe principale de l'application
++            GestionAgricoleApp app = new GestionAgricoleApp();
++            app.setVisible(true);
++        });
++    }
++}
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1728148866718)
++++ b/.idea/vcs.xml	(date 1728148866718)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/codeStyles/Project.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/codeStyles/Project.xml b/.idea/codeStyles/Project.xml
+new file mode 100644
+--- /dev/null	(date 1728148865473)
++++ b/.idea/codeStyles/Project.xml	(date 1728148865473)
+@@ -0,0 +1,7 @@
++<component name="ProjectCodeStyleConfiguration">
++  <code_scheme name="Project" version="173">
++    <ScalaCodeStyleSettings>
++      <option name="MULTILINE_STRING_CLOSING_QUOTES_ON_NEW_LINE" value="true" />
++    </ScalaCodeStyleSettings>
++  </code_scheme>
++</component>
+\ No newline at end of file
+Index: src/GestionCultureInterface.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GestionCultureInterface.java b/src/GestionCultureInterface.java
+new file mode 100644
+--- /dev/null	(date 1729008358117)
++++ b/src/GestionCultureInterface.java	(date 1729008358117)
+@@ -0,0 +1,64 @@
++import javax.swing.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++
++public class GestionCultureInterface {
++    private JFrame frame;
++    private JTextField nomField, varieteField, dateSemisField, dateRecolteField, statutField;
++    private JButton ajouterButton;
++    private GestionCulture gestionCultures;
++
++    public GestionCultureInterface() {
++        gestionCultures = new GestionCulture();
++
++        frame = new JFrame("Gestion des Cultures");
++        frame.setSize(400, 300);
++        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
++        frame.setLayout(null);
++
++        nomField = new JTextField();
++        nomField.setBounds(50, 30, 200, 30);
++        frame.add(nomField);
++
++        varieteField = new JTextField();
++        varieteField.setBounds(50, 70, 200, 30);
++        frame.add(varieteField);
++
++        dateSemisField = new JTextField();
++        dateSemisField.setBounds(50, 110, 200, 30);
++        frame.add(dateSemisField);
++
++        dateRecolteField = new JTextField();
++        dateRecolteField.setBounds(50, 150, 200, 30);
++        frame.add(dateRecolteField);
++
++        statutField = new JTextField();
++        statutField.setBounds(50, 190, 200, 30);
++        frame.add(statutField);
++
++        ajouterButton = new JButton("Ajouter Culture");
++        ajouterButton.setBounds(50, 230, 150, 30);
++        frame.add(ajouterButton);
++
++        ajouterButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                String nom = nomField.getText();
++                String variete = varieteField.getText();
++                String dateSemis = dateSemisField.getText();
++                String dateRecolte = dateRecolteField.getText();
++                String statut = statutField.getText();
++
++                gestionCultures.ajouterCulture(new Culture(nom, variete, dateSemis, dateRecolte, statut));
++                gestionCultures.afficherCultures();
++            }
++        });
++
++        frame.setVisible(true);
++    }
++
++    public static void main(String[] args) {
++        new GestionCultureInterface();
++    }
++}
++
+Index: src/GestionFinancesInterface.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GestionFinancesInterface.java b/src/GestionFinancesInterface.java
+new file mode 100644
+--- /dev/null	(date 1729008512184)
++++ b/src/GestionFinancesInterface.java	(date 1729008512184)
+@@ -0,0 +1,54 @@
++import javax.swing.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++
++public class GestionFinancesInterface {
++    private JFrame frame;
++    private JTextField dateField, categorieField, montantField;
++    private JButton ajouterButton;
++    private GestionFinances gestionFinances;
++
++    public GestionFinancesInterface() {
++        gestionFinances = new GestionFinances();
++
++        frame = new JFrame("Gestion des Finances");
++        frame.setSize(400, 300);
++        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
++        frame.setLayout(null);
++
++        dateField = new JTextField();
++        dateField.setBounds(50, 30, 200, 30);
++        frame.add(dateField);
++
++        categorieField = new JTextField();
++        categorieField.setBounds(50, 70, 200, 30);
++        frame.add(categorieField);
++
++        montantField = new JTextField();
++        montantField.setBounds(50, 110, 200, 30);
++        frame.add(montantField);
++
++        ajouterButton = new JButton("Ajouter Finances");
++        ajouterButton.setBounds(50, 150, 150, 30);
++        frame.add(ajouterButton);
++
++        ajouterButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                String date = dateField.getText();
++                String categorie = categorieField.getText();
++                double montant = Double.parseDouble(montantField.getText());
++
++                gestionFinances.ajouterTransaction(new Finances(date, categorie, montant));
++                gestionFinances.afficherFinance();
++            }
++        });
++
++        frame.setVisible(true);
++    }
++
++    public static void main(String[] args) {
++        new GestionFinancesInterface();
++    }
++}
++
+Index: .idea/codeStyles/codeStyleConfig.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/codeStyles/codeStyleConfig.xml b/.idea/codeStyles/codeStyleConfig.xml
+new file mode 100644
+--- /dev/null	(date 1728148866122)
++++ b/.idea/codeStyles/codeStyleConfig.xml	(date 1728148866122)
+@@ -0,0 +1,5 @@
++<component name="ProjectCodeStyleConfiguration">
++  <state>
++    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default" />
++  </state>
++</component>
+\ No newline at end of file
+Index: src/GestionIntrantInterface.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GestionIntrantInterface.java b/src/GestionIntrantInterface.java
+new file mode 100644
+--- /dev/null	(date 1729008617428)
++++ b/src/GestionIntrantInterface.java	(date 1729008617428)
+@@ -0,0 +1,54 @@
++import javax.swing.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++
++public class GestionIntrantInterface {
++    private JFrame frame;
++    private JTextField nomField, coutField, quantiteField;
++    private JButton ajouterButton;
++    private GestionIntrant gestionIntrant;
++
++    public GestionIntrantInterface() {
++        gestionIntrant = new GestionIntrant();
++
++        frame = new JFrame("Gestion des Intrants");
++        frame.setSize(400, 300);
++        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
++        frame.setLayout(null);
++
++        nomField = new JTextField();
++        nomField.setBounds(50, 30, 200, 30);
++        frame.add(nomField);
++
++        coutField = new JTextField();
++        coutField.setBounds(50, 70, 200, 30);
++        frame.add(coutField);
++
++        quantiteField = new JTextField();
++        quantiteField.setBounds(50, 110, 200, 30);
++        frame.add(quantiteField);
++
++        ajouterButton = new JButton("Ajouter Intrant");
++        ajouterButton.setBounds(50, 150, 150, 30);
++        frame.add(ajouterButton);
++
++        ajouterButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                String nom = nomField.getText();
++                double cout = Double.parseDouble(coutField.getText());
++                double quantite = Double.parseDouble(quantiteField.getText());
++
++                gestionIntrant.ajouterIntrant(new Intrant(nom, cout, quantite));
++                gestionIntrant.afficherIntrants();
++            }
++        });
++
++        frame.setVisible(true);
++    }
++
++    public static void main(String[] args) {
++        new GestionIntrantInterface();
++    }
++}
++
+Index: src/GestionCulture.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GestionCulture.java b/src/GestionCulture.java
+new file mode 100644
+--- /dev/null	(date 1728987103010)
++++ b/src/GestionCulture.java	(date 1728987103010)
+@@ -0,0 +1,31 @@
++import java.util.ArrayList;
++import java.util.List;
++
++public class GestionCulture {
++    private List<Culture>
++    cultures = new ArrayList<>();
++    public void ajouterCulture(Culture culture) {
++    cultures.add(culture);
++}
++    public void modifierCulture(int index, Culture cultureModifier) {
++               cultures.set(index, cultureModifier);
++}
++    public void supprimerCulture(int index) {
++        cultures.remove(index);
++    }
++    public Culture rechercheCultureParNom(String nom) {
++        for (Culture culture : cultures) {
++            if (culture.getNom().equalsIgnoreCase(nom)) {
++                return culture;
++            }
++        }
++        return null;
++    }
++    //Pour l'affichage de tout les cultures
++    public void afficherCultures() {
++        for (Culture culture : cultures) {
++            System.out.println(culture);
++        }
++    }
++    }
++
+Index: src/TravailAgricole.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/TravailAgricole.java b/src/TravailAgricole.java
+new file mode 100644
+--- /dev/null	(date 1728978852484)
++++ b/src/TravailAgricole.java	(date 1728978852484)
+@@ -0,0 +1,33 @@
++public class TravailAgricole {
++    private String date;
++    private String typeDeTravail;
++    private double superficie;
++    public TravailAgricole(String date, String typeDeTravail, double superficie) {
++        this.date=date;
++        this.typeDeTravail=typeDeTravail;
++        this.superficie=superficie;
++    }
++    public String getDate(){
++        return date;
++    }
++    public String getTypeDeTravail() {
++        return typeDeTravail;
++    }
++
++    public double getSuperficie() {
++        return superficie;
++    }
++
++    public void setDate(String date) {
++        this.date = date;
++    }
++
++    public void setTypeDeTravail(String typeDeTravail) {
++        this.typeDeTravail = typeDeTravail;
++    }
++    @Override
++    public String toString() {
++        return String.format("TravailAgricole{date='%s', typeDeTravail='%s', superficie=%.2f}",date, typeDeTravail, superficie);
++    }
++    }
++
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1728148837321)
++++ b/.idea/modules.xml	(date 1728148837321)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/Application de Gestion Agricole.iml" filepath="$PROJECT_DIR$/Application de Gestion Agricole.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: src/GestionRecolteInterface.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GestionRecolteInterface.java b/src/GestionRecolteInterface.java
+new file mode 100644
+--- /dev/null	(date 1729008863593)
++++ b/src/GestionRecolteInterface.java	(date 1729008863593)
+@@ -0,0 +1,54 @@
++import javax.swing.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++
++public class GestionRecolteInterface {
++    private JFrame frame;
++    private JTextField dateRecolteField, quantiteField, prixVenteField;
++    private JButton ajouterButton;
++    private GestionRecolte gestionRecolte;
++
++    public GestionRecolteInterface() {
++        gestionRecolte = new GestionRecolte();
++
++        frame = new JFrame("Gestion des Récoltes");
++        frame.setSize(400, 300);
++        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
++        frame.setLayout(null);
++
++        dateRecolteField = new JTextField();
++        dateRecolteField.setBounds(50, 30, 200, 30);
++        frame.add(dateRecolteField);
++
++        quantiteField = new JTextField();
++        quantiteField.setBounds(50, 70, 200, 30);
++        frame.add(quantiteField);
++
++        prixVenteField = new JTextField();
++        prixVenteField.setBounds(50, 110, 200, 30);
++        frame.add(prixVenteField);
++
++        ajouterButton.setBounds(50, 150, 150, 30);
++        frame.add(ajouterButton);
++
++        ajouterButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                String dateRecolte = dateRecolteField.getText();
++                double quantite = Double.parseDouble(quantiteField.getText());
++                double prixVente = Double.parseDouble(prixVenteField.getText());
++
++                gestionRecolte.ajouterRecolte(new Recolte(dateRecolte, quantite, prixVente));
++                gestionRecolte.afficherRecoltes();
++            }
++        });
++
++        frame.setVisible(true);
++    }
++
++    public static void main(String[] args) {
++        new GestionRecolteInterface();
++    }
++}
++
++
+Index: src/Intrant.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Intrant.java b/src/Intrant.java
+new file mode 100644
+--- /dev/null	(date 1728976818980)
++++ b/src/Intrant.java	(date 1728976818980)
+@@ -0,0 +1,33 @@
++public class Intrant {
++    private String nom;
++    private double cout;
++    private double quantiteDisponible;
++
++    public Intrant(String nom, double cout, double quantiteDisponible) {
++        this.nom= nom;
++        this.cout= cout;
++        this.quantiteDisponible=quantiteDisponible;
++    }
++    public String getNom() {
++        return nom;
++    }
++    public double getCout() {
++        return cout;
++    }
++    public double getQuantiteDisponible() {
++        return quantiteDisponible;
++    }
++    public void setNom(String nom) {
++        this.nom= nom;
++    }
++    public void setCout(double cout) {
++        this.cout = cout;
++    }
++    public void setQuantiteDisponible(double quantiteDisponible) {
++        this.quantiteDisponible = quantiteDisponible;
++    }
++    @Override
++    public String toString() {
++        return String.format("Intrant{nom='%s', cout=%.2f, quantiteDisponible=%.2f}", nom, cout, quantiteDisponible);
++    }
++}
+Index: src/GestionRecolte.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GestionRecolte.java b/src/GestionRecolte.java
+new file mode 100644
+--- /dev/null	(date 1729009472890)
++++ b/src/GestionRecolte.java	(date 1729009472890)
+@@ -0,0 +1,43 @@
++import java.util.ArrayList;
++import java.util.List;
++
++public class GestionRecolte {
++    private List<Recolte> recoltes = new ArrayList<>();
++
++    // Méthode pour ajouter une récolte
++    public void ajouterRecolte(Recolte recolte) {
++        recoltes.add(recolte);
++    }
++
++    // Méthode pour afficher toutes les récoltes
++    public void afficherRecoltes() {
++        if (recoltes.isEmpty()) {
++            System.out.println("Aucune récolte enregistrée.");
++        } else {
++            for (Recolte recolte : recoltes) {
++                System.out.println(recolte);
++            }
++        }
++    }
++
++    // Cette partie permet la recherche  d'une recolte
++    public Recolte rechercherRecolteParDate(String date) {
++        for (Recolte recolte : recoltes) {
++            if (recolte.getDateRecolte().equals(date)) {
++                return recolte;
++            }
++        }
++        return null; // Retourne null si aucune récolte n'est trouvée pour la date donnée
++    }
++
++    // cette partiepermet de supprimer une récolte par index
++    public void supprimerRecolte(int index) {
++        if (index >= 0 && index < recoltes.size()) {
++            recoltes.remove(index);
++            System.out.println("Récolte supprimée avec succès.");
++        } else {
++            System.out.println("Index de récolte invalide.");
++        }
++    }
++}
++
