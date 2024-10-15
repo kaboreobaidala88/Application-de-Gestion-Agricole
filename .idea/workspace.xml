@@ -7,44 +7,7 @@
     <option name="TOOL_WINDOW_SELECTED_CONTENT_INDEX" value="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8104809a-dca9-4966-8802-53332f5a5703" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Changes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Changes/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Changes1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Changes1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/Culture.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/Finances.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionAgricoleApp$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionAgricoleApp$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionAgricoleApp$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionAgricoleApp$4.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionAgricoleApp$5.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionAgricoleApp.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionCulture.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionCultureInterface$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionCultureInterface.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionFinances.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionFinancesInterface$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionFinancesInterface.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionIntrant.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionIntrantInterface$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionIntrantInterface.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionRecolte.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionRecolteInterface$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionRecolteInterface.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionTravaux.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionTravauxInterface$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionTravauxInterface$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/GestionTravauxInterface.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/Intrant.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/Recolte.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Application de Gestion Agricole/TravailAgricole.class" afterDir="false" />
-    </list>
+    <list default="true" id="8104809a-dca9-4966-8802-53332f5a5703" name="Changes" comment="Ceux ci est un projet" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -150,6 +113,15 @@
       <option name="presentableId" value="Default" />
       <updated>1728148702426</updated>
     </task>
+    <task id="LOCAL-00001" summary="Ceux ci est un projet">
+      <option name="closed" value="true" />
+      <created>1729024210580</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1729024210580</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -162,5 +134,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ceux ci est un projet" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ceux ci est un projet" />
   </component>
 </project>
